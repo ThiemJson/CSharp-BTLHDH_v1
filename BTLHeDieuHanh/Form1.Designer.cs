@@ -189,7 +189,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(338, 43);
+            this.label5.Location = new System.Drawing.Point(255, 57);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 13);
             this.label5.TabIndex = 17;
@@ -198,10 +198,10 @@
             // txt_timeleft
             // 
             this.txt_timeleft.AutoSize = true;
-            this.txt_timeleft.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_timeleft.Location = new System.Drawing.Point(246, 11);
+            this.txt_timeleft.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_timeleft.Location = new System.Drawing.Point(241, 20);
             this.txt_timeleft.Name = "txt_timeleft";
-            this.txt_timeleft.Size = new System.Drawing.Size(51, 55);
+            this.txt_timeleft.Size = new System.Drawing.Size(36, 39);
             this.txt_timeleft.TabIndex = 16;
             this.txt_timeleft.Text = "0";
             // 
@@ -339,6 +339,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(648, 502);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
