@@ -31,8 +31,17 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.KillProcess = new System.Windows.Forms.TabPage();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.label5 = new System.Windows.Forms.Label();
             this.txt_timeleft = new System.Windows.Forms.Label();
             this.txt_time_left_label = new System.Windows.Forms.Label();
@@ -47,10 +56,7 @@
             this.numberHours = new System.Windows.Forms.NumericUpDown();
             this.txt_processcount = new System.Windows.Forms.Label();
             this.btn_endprocess = new System.Windows.Forms.Button();
-            this.btn_startprocess = new System.Windows.Forms.Button();
-            this.processList = new System.Windows.Forms.ListBox();
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
-            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.tabControl1.SuspendLayout();
             this.KillProcess.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -66,24 +72,78 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(646, 398);
+            this.tabControl1.Size = new System.Drawing.Size(648, 502);
             this.tabControl1.TabIndex = 0;
             // 
             // KillProcess
             // 
             this.KillProcess.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.KillProcess.Controls.Add(this.listView1);
+            this.KillProcess.Controls.Add(this.label4);
             this.KillProcess.Controls.Add(this.label6);
             this.KillProcess.Controls.Add(this.panel1);
             this.KillProcess.Controls.Add(this.txt_processcount);
             this.KillProcess.Controls.Add(this.btn_endprocess);
-            this.KillProcess.Controls.Add(this.btn_startprocess);
-            this.KillProcess.Controls.Add(this.processList);
             this.KillProcess.Location = new System.Drawing.Point(4, 22);
             this.KillProcess.Name = "KillProcess";
             this.KillProcess.Padding = new System.Windows.Forms.Padding(3);
-            this.KillProcess.Size = new System.Drawing.Size(638, 372);
+            this.KillProcess.Size = new System.Drawing.Size(640, 476);
             this.KillProcess.TabIndex = 0;
             this.KillProcess.Text = "Task Management";
+            this.KillProcess.Click += new System.EventHandler(this.KillProcess_Click);
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.listView1.FullRowSelect = true;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(3, 189);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(634, 284);
+            this.listView1.TabIndex = 12;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Process name";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "PID";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Status";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Username";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Memory ( private working set )";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Desciption";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(10, 153);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(64, 16);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Process: ";
             // 
             // label6
             // 
@@ -114,8 +174,16 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(632, 108);
+            this.panel1.Size = new System.Drawing.Size(634, 108);
             this.panel1.TabIndex = 9;
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(176, 75);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(209, 19);
+            this.progressBar.Step = 1;
+            this.progressBar.TabIndex = 18;
             // 
             // label5
             // 
@@ -242,11 +310,11 @@
             // 
             this.txt_processcount.AutoSize = true;
             this.txt_processcount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_processcount.Location = new System.Drawing.Point(9, 153);
+            this.txt_processcount.Location = new System.Drawing.Point(73, 153);
             this.txt_processcount.Name = "txt_processcount";
-            this.txt_processcount.Size = new System.Drawing.Size(64, 16);
+            this.txt_processcount.Size = new System.Drawing.Size(15, 16);
             this.txt_processcount.TabIndex = 7;
-            this.txt_processcount.Text = "Process: ";
+            this.txt_processcount.Text = "0";
             this.txt_processcount.Click += new System.EventHandler(this.label1_Click);
             // 
             // btn_endprocess
@@ -260,46 +328,17 @@
             this.btn_endprocess.Text = "End Process";
             this.btn_endprocess.UseVisualStyleBackColor = true;
             // 
-            // btn_startprocess
-            // 
-            this.btn_startprocess.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_startprocess.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btn_startprocess.Location = new System.Drawing.Point(317, 135);
-            this.btn_startprocess.Name = "btn_startprocess";
-            this.btn_startprocess.Size = new System.Drawing.Size(142, 34);
-            this.btn_startprocess.TabIndex = 5;
-            this.btn_startprocess.Text = "Start Process";
-            this.btn_startprocess.UseVisualStyleBackColor = true;
-            // 
-            // processList
-            // 
-            this.processList.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.processList.FormattingEnabled = true;
-            this.processList.Location = new System.Drawing.Point(3, 183);
-            this.processList.Name = "processList";
-            this.processList.Size = new System.Drawing.Size(632, 186);
-            this.processList.TabIndex = 4;
-            // 
             // mainTimer
             // 
             this.mainTimer.Interval = 1000;
             this.mainTimer.Tick += new System.EventHandler(this.mainTimer_Tick);
             // 
-            // progressBar
-            // 
-            this.progressBar.Location = new System.Drawing.Point(176, 75);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(209, 19);
-            this.progressBar.Step = 1;
-            this.progressBar.TabIndex = 18;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(646, 398);
+            this.ClientSize = new System.Drawing.Size(648, 502);
             this.Controls.Add(this.tabControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
@@ -323,8 +362,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage KillProcess;
         private System.Windows.Forms.Button btn_endprocess;
-        private System.Windows.Forms.Button btn_startprocess;
-        private System.Windows.Forms.ListBox processList;
         private System.Windows.Forms.Label txt_processcount;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btn_cancel;
@@ -342,6 +379,14 @@
         private System.Windows.Forms.Label txt_timeleft;
         private System.Windows.Forms.Timer mainTimer;
         private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }
 
