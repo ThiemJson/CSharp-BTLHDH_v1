@@ -57,6 +57,16 @@
             this.txt_processcount = new System.Windows.Forms.Label();
             this.btn_endprocess = new System.Windows.Forms.Button();
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
+            this.txtBox_currenttask = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtBox_pid = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtBox_username = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtBox_description = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtBox_memory = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.KillProcess.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -72,12 +82,22 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(648, 502);
+            this.tabControl1.Size = new System.Drawing.Size(813, 502);
             this.tabControl1.TabIndex = 0;
             // 
             // KillProcess
             // 
             this.KillProcess.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.KillProcess.Controls.Add(this.label11);
+            this.KillProcess.Controls.Add(this.txtBox_memory);
+            this.KillProcess.Controls.Add(this.label10);
+            this.KillProcess.Controls.Add(this.txtBox_description);
+            this.KillProcess.Controls.Add(this.label9);
+            this.KillProcess.Controls.Add(this.txtBox_username);
+            this.KillProcess.Controls.Add(this.label8);
+            this.KillProcess.Controls.Add(this.txtBox_pid);
+            this.KillProcess.Controls.Add(this.label7);
+            this.KillProcess.Controls.Add(this.txtBox_currenttask);
             this.KillProcess.Controls.Add(this.listView1);
             this.KillProcess.Controls.Add(this.label4);
             this.KillProcess.Controls.Add(this.label6);
@@ -87,7 +107,7 @@
             this.KillProcess.Location = new System.Drawing.Point(4, 22);
             this.KillProcess.Name = "KillProcess";
             this.KillProcess.Padding = new System.Windows.Forms.Padding(3);
-            this.KillProcess.Size = new System.Drawing.Size(640, 476);
+            this.KillProcess.Size = new System.Drawing.Size(805, 476);
             this.KillProcess.TabIndex = 0;
             this.KillProcess.Text = "Task Management";
             this.KillProcess.Click += new System.EventHandler(this.KillProcess_Click);
@@ -106,10 +126,11 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(3, 189);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(634, 284);
+            this.listView1.Size = new System.Drawing.Size(799, 284);
             this.listView1.TabIndex = 12;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -174,14 +195,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(634, 108);
+            this.panel1.Size = new System.Drawing.Size(799, 108);
             this.panel1.TabIndex = 9;
             // 
             // progressBar
             // 
             this.progressBar.Location = new System.Drawing.Point(176, 75);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(209, 19);
+            this.progressBar.Size = new System.Drawing.Size(341, 19);
             this.progressBar.Step = 1;
             this.progressBar.TabIndex = 18;
             // 
@@ -189,7 +210,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(255, 57);
+            this.label5.Location = new System.Drawing.Point(321, 59);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 13);
             this.label5.TabIndex = 17;
@@ -199,7 +220,7 @@
             // 
             this.txt_timeleft.AutoSize = true;
             this.txt_timeleft.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_timeleft.Location = new System.Drawing.Point(241, 20);
+            this.txt_timeleft.Location = new System.Drawing.Point(298, 17);
             this.txt_timeleft.Name = "txt_timeleft";
             this.txt_timeleft.Size = new System.Drawing.Size(36, 39);
             this.txt_timeleft.TabIndex = 16;
@@ -209,7 +230,7 @@
             // 
             this.txt_time_left_label.AutoSize = true;
             this.txt_time_left_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_time_left_label.Location = new System.Drawing.Point(172, 39);
+            this.txt_time_left_label.Location = new System.Drawing.Point(225, 32);
             this.txt_time_left_label.Name = "txt_time_left_label";
             this.txt_time_left_label.Size = new System.Drawing.Size(77, 20);
             this.txt_time_left_label.TabIndex = 15;
@@ -250,7 +271,7 @@
             // 
             this.btn_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btn_cancel.Location = new System.Drawing.Point(521, 13);
+            this.btn_cancel.Location = new System.Drawing.Point(686, 17);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(90, 29);
             this.btn_cancel.TabIndex = 12;
@@ -262,7 +283,7 @@
             // 
             this.btn_restart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_restart.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.btn_restart.Location = new System.Drawing.Point(406, 57);
+            this.btn_restart.Location = new System.Drawing.Point(571, 61);
             this.btn_restart.Name = "btn_restart";
             this.btn_restart.Size = new System.Drawing.Size(90, 29);
             this.btn_restart.TabIndex = 11;
@@ -274,7 +295,7 @@
             // 
             this.btn_shutdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_shutdown.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btn_shutdown.Location = new System.Drawing.Point(406, 13);
+            this.btn_shutdown.Location = new System.Drawing.Point(571, 17);
             this.btn_shutdown.Name = "btn_shutdown";
             this.btn_shutdown.Size = new System.Drawing.Size(90, 29);
             this.btn_shutdown.TabIndex = 10;
@@ -321,23 +342,110 @@
             // 
             this.btn_endprocess.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_endprocess.ForeColor = System.Drawing.Color.DarkRed;
-            this.btn_endprocess.Location = new System.Drawing.Point(483, 135);
+            this.btn_endprocess.Location = new System.Drawing.Point(660, 139);
             this.btn_endprocess.Name = "btn_endprocess";
             this.btn_endprocess.Size = new System.Drawing.Size(131, 34);
             this.btn_endprocess.TabIndex = 6;
             this.btn_endprocess.Text = "End Process";
             this.btn_endprocess.UseVisualStyleBackColor = true;
+            this.btn_endprocess.Click += new System.EventHandler(this.btn_endprocess_Click);
             // 
             // mainTimer
             // 
             this.mainTimer.Interval = 1000;
             this.mainTimer.Tick += new System.EventHandler(this.mainTimer_Tick);
             // 
+            // txtBox_currenttask
+            // 
+            this.txtBox_currenttask.Location = new System.Drawing.Point(179, 153);
+            this.txtBox_currenttask.Name = "txtBox_currenttask";
+            this.txtBox_currenttask.Size = new System.Drawing.Size(89, 20);
+            this.txtBox_currenttask.TabIndex = 13;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(176, 135);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(45, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Process";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(279, 135);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(25, 13);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "PID";
+            // 
+            // txtBox_pid
+            // 
+            this.txtBox_pid.Location = new System.Drawing.Point(282, 153);
+            this.txtBox_pid.Name = "txtBox_pid";
+            this.txtBox_pid.Size = new System.Drawing.Size(33, 20);
+            this.txtBox_pid.TabIndex = 15;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(324, 135);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(55, 13);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Username";
+            // 
+            // txtBox_username
+            // 
+            this.txtBox_username.Location = new System.Drawing.Point(327, 153);
+            this.txtBox_username.Name = "txtBox_username";
+            this.txtBox_username.Size = new System.Drawing.Size(89, 20);
+            this.txtBox_username.TabIndex = 17;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(486, 134);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(60, 13);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Description";
+            // 
+            // txtBox_description
+            // 
+            this.txtBox_description.Location = new System.Drawing.Point(489, 152);
+            this.txtBox_description.Name = "txtBox_description";
+            this.txtBox_description.Size = new System.Drawing.Size(139, 20);
+            this.txtBox_description.TabIndex = 19;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(423, 134);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(44, 13);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "Memory";
+            // 
+            // txtBox_memory
+            // 
+            this.txtBox_memory.Location = new System.Drawing.Point(426, 152);
+            this.txtBox_memory.Name = "txtBox_memory";
+            this.txtBox_memory.Size = new System.Drawing.Size(50, 20);
+            this.txtBox_memory.TabIndex = 21;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(648, 502);
+            this.ClientSize = new System.Drawing.Size(813, 502);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -388,6 +496,16 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtBox_currenttask;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtBox_description;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtBox_username;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtBox_pid;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtBox_memory;
     }
 }
 

@@ -17,7 +17,7 @@ namespace BTLHeDieuHanh
     public partial class Form1 : Form
     {
         int timeLeft = 0;
-        Process[] processArray;
+        Process[] processList;
         #region Unused code
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -44,19 +44,6 @@ namespace BTLHeDieuHanh
         {
             InitializeComponent();
             renderProcessesOnListView();
-        }
-
-        private void loadProcess()
-        {
-            processArray = Process.GetProcesses();
-            if(Convert.ToInt32(txt_processcount.Text) != processArray.Length)
-            {
-                listView1.Items.Clear();
-                for(int i = 0;i<processArray.Length; i++)
-                {
-                    listView1.Items.Add(processArray[i].ProcessName);
-                }
-            }
         }
 
         // Handler Shutdown timeInterval
@@ -204,7 +191,7 @@ namespace BTLHeDieuHanh
         public void renderProcessesOnListView()
         {
             // Create an array to store the processes
-            Process[] processList = Process.GetProcesses();
+            processList = Process.GetProcesses();
             txt_processcount.Text = processList.Length.ToString();
             listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
@@ -340,6 +327,48 @@ namespace BTLHeDieuHanh
         private void btn_startprocess_Click(object sender, EventArgs e)
         {
             renderProcessesOnListView();
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                ListViewItem item = listView1.SelectedItems[0];
+                txtBox_currenttask.Text = item.SubItems[0].Text;
+                txtBox_pid.Text = item.SubItems[1].Text;
+                txtBox_username.Text = item.SubItems[3].Text;
+                txtBox_description.Text = item.SubItems[5].Text;
+                txtBox_memory.Text = item.SubItems[4].Text;
+            }
+            else
+            {
+                txtBox_currenttask.Text = "";
+                txtBox_pid.Text = "";
+                txtBox_username.Text = "";
+                txtBox_description.Text = "";
+                txtBox_memory.Text = "";
+            }
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_endprocess_Click(object sender, EventArgs e)
+        {
+            DialogResult dialog = MessageBox.Show("Are you sure you want to kill Process", "Confirmation", MessageBoxButtons.OKCancel);
+            if (dialog == DialogResult.OK)
+            {
+                Console.WriteLine("OK clicked.");
+
+                ListViewItem item = listView1.SelectedItems[0];
+                item.Remove();
+            }
+            else
+            {
+                Console.WriteLine("Cancel clicked.");
+            }
         }
     }
 }
