@@ -18,6 +18,7 @@ namespace BTLHeDieuHanh
     {
         int timeLeft = 0;
         Process[] processList;
+        Process currentProcess;
         #region Unused code
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -55,6 +56,8 @@ namespace BTLHeDieuHanh
                 numberMinutes.Value += 1;
                 box.Value = 0;
             }
+
+            txt_timeleft.Text = getTimeOut().ToString();
         }
 
         private void numberMinutes_ValueChanged(object sender, EventArgs e)
@@ -65,11 +68,13 @@ namespace BTLHeDieuHanh
                 numberHours.Value += 1;
                 box.Value = 0;
             }
+
+            txt_timeleft.Text = getTimeOut().ToString();
         }
 
         private void numberHours_ValueChanged(object sender, EventArgs e)
         {
-
+            txt_timeleft.Text = getTimeOut().ToString();
         }
 
         /// <summary>
@@ -90,16 +95,32 @@ namespace BTLHeDieuHanh
 
         private void btn_restart_Click(object sender, EventArgs e)
         {
-            startTimer();
-            lockUI();
-            // this.shutDown("-r -t" + getTimeOut());
+            DialogResult dialog = MessageBox.Show("Are you sure you want to reset your computer in "+getTimeOut()+"s", "Restart computer", MessageBoxButtons.OKCancel);
+            if (dialog == DialogResult.OK)
+            {
+                startTimer();
+                lockUI();
+                // this.shutDown("-r -t" + getTimeOut());
+            }
+            else
+            {
+                Console.WriteLine("Cancel clicked.");
+            }
         }
 
         private void btn_shutdown_Click(object sender, EventArgs e)
         {
-            startTimer();
-            lockUI();
-            // this.shutDown("-s -t" + getTimeOut());
+            DialogResult dialog = MessageBox.Show("Are you sure you want to shutdown your computer in " + getTimeOut() + "s", "Shutdown computer", MessageBoxButtons.OKCancel);
+            if (dialog == DialogResult.OK)
+            {
+                startTimer();
+                lockUI();
+                // this.shutDown("-s -t" + getTimeOut());
+            }
+            else
+            {
+                Console.WriteLine("Cancel clicked.");
+            }
         }
 
         private int getTimeOut()
@@ -112,9 +133,7 @@ namespace BTLHeDieuHanh
         /// </summary>
         private void startTimer()
         {
-            progressBar.Maximum = timeLeft;
-            progressBar.Minimum = 0;
-            
+            progressBar.Maximum = getTimeOut();
             progressBar.Value = progressBar.Maximum;
             timeLeft = getTimeOut();
             txt_timeleft.Text = timeLeft.ToString();
@@ -139,7 +158,7 @@ namespace BTLHeDieuHanh
                 return;
             }
 
-            progressBar.Value -= 1;
+            progressBar.Increment(-1);
         }
 
         private void mainTimer_Tick(object sender, EventArgs e)
@@ -339,6 +358,8 @@ namespace BTLHeDieuHanh
                 txtBox_username.Text = item.SubItems[3].Text;
                 txtBox_description.Text = item.SubItems[5].Text;
                 txtBox_memory.Text = item.SubItems[4].Text;
+
+                currentProcess = processList[item.Index];
             }
             else
             {
@@ -357,6 +378,11 @@ namespace BTLHeDieuHanh
 
         private void btn_endprocess_Click(object sender, EventArgs e)
         {
+            if ( currentProcess == null)
+            {
+                return;
+            }
+
             DialogResult dialog = MessageBox.Show("Are you sure you want to kill Process", "Confirmation", MessageBoxButtons.OKCancel);
             if (dialog == DialogResult.OK)
             {
@@ -364,11 +390,17 @@ namespace BTLHeDieuHanh
 
                 ListViewItem item = listView1.SelectedItems[0];
                 item.Remove();
+                killProcess(currentProcess);
             }
             else
             {
                 Console.WriteLine("Cancel clicked.");
             }
+        }
+
+        private void killProcess(Process process)
+        {
+            process.Kill();
         }
     }
 }
