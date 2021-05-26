@@ -100,7 +100,7 @@ namespace BTLHeDieuHanh
             {
                 startTimer();
                 lockUI();
-                // this.shutDown("-r -t" + getTimeOut());
+                this.shutDown("-r -t " + getTimeOut());
             }
             else
             {
@@ -115,7 +115,7 @@ namespace BTLHeDieuHanh
             {
                 startTimer();
                 lockUI();
-                // this.shutDown("-s -t" + getTimeOut());
+                this.shutDown("-s -t " + getTimeOut());
             }
             else
             {
