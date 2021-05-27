@@ -8,6 +8,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Management;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 using System.Windows.Forms;
@@ -17,8 +18,17 @@ namespace BTLHeDieuHanh
     public partial class Form1 : Form
     {
         int timeLeft = 0;
+
+        // Lưu trữ danh sách các tiến trình hiện tại
         Process[] processList;
+
+        // Lưu trữ tiến trình đang chọn hiện tại ( để quản lý )
         Process currentProcess;
+
+        // Khai báo thư viện API đang sử dụng
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWnNewParent);
+         
         #region Unused code
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -209,64 +219,64 @@ namespace BTLHeDieuHanh
         /// </summary>
         public void renderProcessesOnListView()
         {
-            // Create an array to store the processes
+            // Lấy toàn bộ danh sách Process hiện tại đang sử dụng trong máy tính
             processList = Process.GetProcesses();
+
+
             txt_processcount.Text = processList.Length.ToString();
             listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
-            // Create an Imagelist that will store the icons of every process
+            // Tạo một danh sách tưởng tượng sẽ lưu trữ các biểu tượng của mọi quy trình
             ImageList Imagelist = new ImageList();
 
-            // Loop through the array of processes to show information of every process in your console
+            // Lặp qua array chứa các tiến trình và hiển thị toàn bộ thông tin của chúng
             foreach (Process process in processList)
             {
-                // Define the status from a boolean to a simple string
+                // Xác định trạng thái từ boolean thành một chuỗi đơn giản
+
                 string status = (process.Responding == true ? "Responding" : "Not responding");
 
-                // Retrieve the object of extra information of the process (to retrieve Username and Description)
+                // Truy xuất đối tượng thông tin bổ sung của quy trình (để truy xuất Tên người dùng và Mô tả)
                 dynamic extraProcessInfo = GetProcessExtraInformation(process.Id);
 
-                // Create an array of string that will store the information to display in our 
+                // Tạo một mảng chuỗi sẽ lưu trữ thông tin để hiển thị  
                 string[] row = {
-                    // 1 Process name
+
+                    // 1 Tên tiến trình
                     process.ProcessName,
-                    // 2 Process ID
+
+                    // 2 ID Tiến trình
                     process.Id.ToString(),
-                    // 3 Process status
+
+                    // 3 Trạng thái tiến trình
                     status,
-                    // 4 Username that started the process
+
+                    // 4 Người dùng mở tiến trình
                     extraProcessInfo.Username,
-                    // 5 Memory usage
+
+                    // 5 Dung lượng sử dụng
                     BytesToReadableValue(process.PrivateMemorySize64),
-                    // 6 Description of the process
+                    
+                    // 6 Thông tin ứng dụng
                     extraProcessInfo.Description
                 };
 
-                //
-                // As not every process has an icon then, prevent the app from crash
                 try
                 {
                     Imagelist.Images.Add(
-                        // Add an unique Key as identifier for the icon (same as the ID of the process)
                         process.Id.ToString(),
-                        // Add Icon to the List 
                         Icon.ExtractAssociatedIcon(process.MainModule.FileName).ToBitmap()
                     );
                 }
                 catch { }
 
-                // Create a new Item to add into the list view that expects the row of information as first argument
                 ListViewItem item = new ListViewItem(row)
                 {
-                    // Set the ImageIndex of the item as the same defined in the previous try-catch
                     ImageIndex = Imagelist.Images.IndexOfKey(process.Id.ToString())
                 };
-
-                // Add the Item
                 listView1.Items.Add(item);
             }
 
-            // Set the imagelist of your list view the previous created list :)
             listView1.LargeImageList = Imagelist;
             listView1.SmallImageList = Imagelist;
         }
@@ -401,6 +411,58 @@ namespace BTLHeDieuHanh
         private void killProcess(Process process)
         {
             process.Kill();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btn_openApp_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog od = new OpenFileDialog();
+            if (od.ShowDialog() == DialogResult.OK)
+            {
+                Process process = Process.Start(od.FileName);
+                process.WaitForInputIdle();
+
+                while (process.MainWindowHandle == IntPtr.Zero)
+                {
+                    Thread.Sleep(100);
+                    process.Refresh();
+                }
+
+                SetParent(process.MainWindowHandle, this.panel2.Handle);
+            }
+        }
+
+        private void btn_startprocess_Click_1(object sender, EventArgs e)
+        {
+            if (currentProcess == null)
+            {
+                return;
+            }
+
+            DialogResult dialog = MessageBox.Show("Are you sure you want to start Process", "Confirmation", MessageBoxButtons.OKCancel);
+            if (dialog == DialogResult.OK)
+            {
+                Console.WriteLine("OK clicked.");
+                currentProcess.Start();
+            }
+            else
+            {
+                Console.WriteLine("Cancel clicked.");
+            }
         }
     }
 }

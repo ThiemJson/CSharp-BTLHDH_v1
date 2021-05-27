@@ -31,6 +31,16 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.KillProcess = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtBox_memory = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtBox_description = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtBox_username = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtBox_pid = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtBox_currenttask = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -56,28 +66,24 @@
             this.numberHours = new System.Windows.Forms.NumericUpDown();
             this.txt_processcount = new System.Windows.Forms.Label();
             this.btn_endprocess = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_openApp = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
-            this.txtBox_currenttask = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtBox_pid = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtBox_username = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtBox_description = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtBox_memory = new System.Windows.Forms.TextBox();
+            this.btn_startprocess = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.KillProcess.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberSeconds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberHours)).BeginInit();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.KillProcess);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -88,6 +94,7 @@
             // KillProcess
             // 
             this.KillProcess.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.KillProcess.Controls.Add(this.btn_startprocess);
             this.KillProcess.Controls.Add(this.label11);
             this.KillProcess.Controls.Add(this.txtBox_memory);
             this.KillProcess.Controls.Add(this.label10);
@@ -111,6 +118,97 @@
             this.KillProcess.TabIndex = 0;
             this.KillProcess.Text = "Task Management";
             this.KillProcess.Click += new System.EventHandler(this.KillProcess_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(423, 134);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(44, 13);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "Memory";
+            // 
+            // txtBox_memory
+            // 
+            this.txtBox_memory.Enabled = false;
+            this.txtBox_memory.Location = new System.Drawing.Point(426, 152);
+            this.txtBox_memory.Name = "txtBox_memory";
+            this.txtBox_memory.Size = new System.Drawing.Size(50, 20);
+            this.txtBox_memory.TabIndex = 21;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(486, 134);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(60, 13);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Description";
+            // 
+            // txtBox_description
+            // 
+            this.txtBox_description.Enabled = false;
+            this.txtBox_description.Location = new System.Drawing.Point(489, 152);
+            this.txtBox_description.Name = "txtBox_description";
+            this.txtBox_description.Size = new System.Drawing.Size(139, 20);
+            this.txtBox_description.TabIndex = 19;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(324, 135);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(55, 13);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Username";
+            // 
+            // txtBox_username
+            // 
+            this.txtBox_username.Enabled = false;
+            this.txtBox_username.Location = new System.Drawing.Point(327, 153);
+            this.txtBox_username.Name = "txtBox_username";
+            this.txtBox_username.Size = new System.Drawing.Size(89, 20);
+            this.txtBox_username.TabIndex = 17;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(279, 135);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(25, 13);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "PID";
+            // 
+            // txtBox_pid
+            // 
+            this.txtBox_pid.Enabled = false;
+            this.txtBox_pid.Location = new System.Drawing.Point(282, 153);
+            this.txtBox_pid.Name = "txtBox_pid";
+            this.txtBox_pid.Size = new System.Drawing.Size(33, 20);
+            this.txtBox_pid.TabIndex = 15;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(176, 135);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(45, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Process";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // txtBox_currenttask
+            // 
+            this.txtBox_currenttask.Enabled = false;
+            this.txtBox_currenttask.Location = new System.Drawing.Point(179, 153);
+            this.txtBox_currenttask.Name = "txtBox_currenttask";
+            this.txtBox_currenttask.Size = new System.Drawing.Size(89, 20);
+            this.txtBox_currenttask.TabIndex = 13;
             // 
             // listView1
             // 
@@ -179,6 +277,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGray;
+            this.panel1.BackgroundImage = global::BTLHeDieuHanh.Properties.Resources._4kPaper;
             this.panel1.Controls.Add(this.progressBar);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.txt_timeleft);
@@ -197,6 +296,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(799, 108);
             this.panel1.TabIndex = 9;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // progressBar
             // 
@@ -340,111 +440,74 @@
             // 
             // btn_endprocess
             // 
-            this.btn_endprocess.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_endprocess.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_endprocess.ForeColor = System.Drawing.Color.DarkRed;
-            this.btn_endprocess.Location = new System.Drawing.Point(660, 139);
+            this.btn_endprocess.Location = new System.Drawing.Point(722, 139);
             this.btn_endprocess.Name = "btn_endprocess";
-            this.btn_endprocess.Size = new System.Drawing.Size(131, 34);
+            this.btn_endprocess.Size = new System.Drawing.Size(69, 34);
             this.btn_endprocess.TabIndex = 6;
             this.btn_endprocess.Text = "End Process";
             this.btn_endprocess.UseVisualStyleBackColor = true;
             this.btn_endprocess.Click += new System.EventHandler(this.btn_endprocess_Click);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackgroundImage = global::BTLHeDieuHanh.Properties.Resources._4kPaper;
+            this.tabPage1.Controls.Add(this.btn_openApp);
+            this.tabPage1.Controls.Add(this.panel2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(805, 476);
+            this.tabPage1.TabIndex = 1;
+            this.tabPage1.Text = "Open apps";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btn_openApp
+            // 
+            this.btn_openApp.BackgroundImage = global::BTLHeDieuHanh.Properties.Resources.CCCP2;
+            this.btn_openApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_openApp.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_openApp.Location = new System.Drawing.Point(69, 190);
+            this.btn_openApp.Name = "btn_openApp";
+            this.btn_openApp.Size = new System.Drawing.Size(126, 36);
+            this.btn_openApp.TabIndex = 2;
+            this.btn_openApp.Text = "Open Application";
+            this.btn_openApp.UseVisualStyleBackColor = true;
+            this.btn_openApp.Click += new System.EventHandler(this.btn_openApp_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackgroundImage = global::BTLHeDieuHanh.Properties.Resources.CCCP2;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(283, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(519, 470);
+            this.panel2.TabIndex = 1;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // mainTimer
             // 
             this.mainTimer.Interval = 1000;
             this.mainTimer.Tick += new System.EventHandler(this.mainTimer_Tick);
             // 
-            // txtBox_currenttask
+            // btn_startprocess
             // 
-            this.txtBox_currenttask.Location = new System.Drawing.Point(179, 153);
-            this.txtBox_currenttask.Name = "txtBox_currenttask";
-            this.txtBox_currenttask.Size = new System.Drawing.Size(89, 20);
-            this.txtBox_currenttask.TabIndex = 13;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(176, 135);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Process";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(279, 135);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(25, 13);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "PID";
-            // 
-            // txtBox_pid
-            // 
-            this.txtBox_pid.Location = new System.Drawing.Point(282, 153);
-            this.txtBox_pid.Name = "txtBox_pid";
-            this.txtBox_pid.Size = new System.Drawing.Size(33, 20);
-            this.txtBox_pid.TabIndex = 15;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(324, 135);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(55, 13);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "Username";
-            // 
-            // txtBox_username
-            // 
-            this.txtBox_username.Location = new System.Drawing.Point(327, 153);
-            this.txtBox_username.Name = "txtBox_username";
-            this.txtBox_username.Size = new System.Drawing.Size(89, 20);
-            this.txtBox_username.TabIndex = 17;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(486, 134);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(60, 13);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "Description";
-            // 
-            // txtBox_description
-            // 
-            this.txtBox_description.Location = new System.Drawing.Point(489, 152);
-            this.txtBox_description.Name = "txtBox_description";
-            this.txtBox_description.Size = new System.Drawing.Size(139, 20);
-            this.txtBox_description.TabIndex = 19;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(423, 134);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(44, 13);
-            this.label11.TabIndex = 22;
-            this.label11.Text = "Memory";
-            // 
-            // txtBox_memory
-            // 
-            this.txtBox_memory.Location = new System.Drawing.Point(426, 152);
-            this.txtBox_memory.Name = "txtBox_memory";
-            this.txtBox_memory.Size = new System.Drawing.Size(50, 20);
-            this.txtBox_memory.TabIndex = 21;
+            this.btn_startprocess.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_startprocess.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.btn_startprocess.Location = new System.Drawing.Point(647, 139);
+            this.btn_startprocess.Name = "btn_startprocess";
+            this.btn_startprocess.Size = new System.Drawing.Size(69, 34);
+            this.btn_startprocess.TabIndex = 23;
+            this.btn_startprocess.Text = "Start Process";
+            this.btn_startprocess.UseVisualStyleBackColor = true;
+            this.btn_startprocess.Click += new System.EventHandler(this.btn_startprocess_Click_1);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::BTLHeDieuHanh.Properties.Resources.CCCP2;
             this.ClientSize = new System.Drawing.Size(813, 502);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -462,6 +525,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numberSeconds)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberMinutes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberHours)).EndInit();
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -506,6 +570,10 @@
         private System.Windows.Forms.TextBox txtBox_pid;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtBox_memory;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button btn_openApp;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btn_startprocess;
     }
 }
 
